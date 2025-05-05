@@ -33,22 +33,61 @@ export function FileExplorer() {
 
   return (
     <div className="p-6">
-      <div className="mb-6 flex items-center justify-between">
-        <div className="flex items-center gap-2">
-          <h2 className="text-xl font-semibold">My Drive</h2>
-          <Button variant="ghost" size="icon" className="h-8 w-8">
-            <Info className="h-4 w-4" />
-          </Button>
+      <div className="mb-6">
+        <div className="flex items-center gap-1 text-sm text-gray-500 dark:text-gray-400">
+          <span>My Drive</span>
+          <ChevronRight className="h-4 w-4" />
+          <span>Documents</span>
         </div>
-        <div className="flex items-center gap-2">
-          <Button variant="outline" size="sm" className="gap-2">
-            <Upload className="h-4 w-4" />
-            <span>Upload</span>
-          </Button>
-          <Button variant="outline" size="sm" className="gap-2">
-            <Plus className="h-4 w-4" />
-            <span>New Folder</span>
-          </Button>
+      </div>
+      <div className="mb-6 flex flex-col gap-4">
+        <div className="flex items-center justify-between">
+          <div className="flex items-center gap-2">
+            <h2 className="text-xl font-semibold">My Drive</h2>
+            <Button variant="ghost" size="icon" className="h-8 w-8">
+              <Info className="h-4 w-4" />
+            </Button>
+          </div>
+          <div className="hidden items-center gap-2 md:flex">
+            <Button variant="outline" size="sm" className="gap-2">
+              <Upload className="h-4 w-4" />
+              <span>Upload</span>
+            </Button>
+            <Button variant="outline" size="sm" className="gap-2">
+              <Plus className="h-4 w-4" />
+              <span>New Folder</span>
+            </Button>
+            <div className="flex rounded-md border dark:border-gray-700">
+              <Button
+                variant="ghost"
+                size="icon"
+                className={`h-8 w-8 rounded-none rounded-l-md ${viewMode === "list" ? "bg-gray-100 dark:bg-gray-800" : ""}`}
+                onClick={() => setViewMode("list")}
+              >
+                <List className="h-4 w-4" />
+              </Button>
+              <Button
+                variant="ghost"
+                size="icon"
+                className={`h-8 w-8 rounded-none rounded-r-md ${viewMode === "grid" ? "bg-gray-100 dark:bg-gray-800" : ""}`}
+                onClick={() => setViewMode("grid")}
+              >
+                <Grid className="h-4 w-4" />
+              </Button>
+            </div>
+          </div>
+        </div>
+        <div className="flex items-center justify-between gap-2 md:hidden">
+          <div className="flex items-center gap-2">
+            <Button variant="outline" size="sm" className="gap-2">
+              <Upload className="h-4 w-4" />
+              <span>Upload</span>
+            </Button>
+            <Button variant="outline" size="sm" className="gap-2">
+              <Plus className="h-4 w-4" />
+              <span>New Folder</span>
+            </Button>
+          </div>
           <div className="flex rounded-md border dark:border-gray-700">
             <Button
               variant="ghost"
@@ -67,14 +106,6 @@ export function FileExplorer() {
               <Grid className="h-4 w-4" />
             </Button>
           </div>
-        </div>
-      </div>
-
-      <div className="mb-6">
-        <div className="flex items-center gap-1 text-sm text-gray-500 dark:text-gray-400">
-          <span>My Drive</span>
-          <ChevronRight className="h-4 w-4" />
-          <span>Documents</span>
         </div>
       </div>
 
