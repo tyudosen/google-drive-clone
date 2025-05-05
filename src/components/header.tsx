@@ -4,11 +4,13 @@ import Image from "next/image";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { ThemeToggle } from "@/components/theme-toggle";
+import { MobileSidebarTrigger } from "@/components/sidebar";
 
 export function Header() {
   return (
     <header className="flex h-16 items-center justify-between border-b bg-white px-4 md:px-6 dark:border-gray-800 dark:bg-gray-950">
       <div className="flex items-center gap-4">
+        <MobileSidebarTrigger />
         <div className="flex items-center gap-2">
           <Image
             src="/placeholder.svg?height=32&width=32"
@@ -17,7 +19,7 @@ export function Header() {
             height={32}
             className="h-8 w-8"
           />
-          <h1 className="hidden text-xl font-semibold md:block">Drive</h1>
+          <h1 className="text-xl font-semibold">Drive</h1>
         </div>
         <div className="relative hidden md:block md:w-96">
           <Search className="absolute top-2.5 left-2.5 h-4 w-4 text-gray-500" />
