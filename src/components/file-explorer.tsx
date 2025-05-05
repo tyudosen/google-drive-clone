@@ -1,6 +1,6 @@
-"use client"
+"use client";
 
-import { useState } from "react"
+import { useState } from "react";
 import {
   ChevronRight,
   Download,
@@ -15,21 +15,21 @@ import {
   Share2,
   Star,
   Upload,
-} from "lucide-react"
-import Image from "next/image"
+} from "lucide-react";
+import Image from "next/image";
 
-import { Button } from "~/components/ui/button"
+import { Button } from "@/components/ui/button";
 import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuItem,
   DropdownMenuSeparator,
   DropdownMenuTrigger,
-} from "~/components/ui/dropdown-menu"
-import { mockFiles, mockFolders } from "~/lib/mock-data"
+} from "@/components/ui/dropdown-menu";
+import { mockFiles, mockFolders } from "@/lib/mock-data";
 
 export function FileExplorer() {
-  const [viewMode, setViewMode] = useState<"grid" | "list">("grid")
+  const [viewMode, setViewMode] = useState<"grid" | "list">("grid");
 
   return (
     <div className="p-6">
@@ -105,12 +105,12 @@ export function FileExplorer() {
         </div>
       )}
     </div>
-  )
+  );
 }
 
 function FolderCard({ folder }: { folder: any }) {
   return (
-    <div className="group relative rounded-lg border bg-white p-4 transition-all hover:shadow-md">
+    <div className="group relative rounded-lg border bg-white p-4 transition-all hover:shadow-md dark:border-gray-700 dark:bg-gray-900 dark:hover:bg-gray-800 dark:hover:shadow-none">
       <div className="mb-2 flex items-center justify-between">
         <div className="flex items-center gap-2">
           <Folder className="h-5 w-5 text-gray-400" />
@@ -118,7 +118,11 @@ function FolderCard({ folder }: { folder: any }) {
         </div>
         <DropdownMenu>
           <DropdownMenuTrigger asChild>
-            <Button variant="ghost" size="icon" className="h-8 w-8 opacity-0 group-hover:opacity-100">
+            <Button
+              variant="ghost"
+              size="icon"
+              className="h-8 w-8 opacity-0 group-hover:opacity-100"
+            >
               <MoreVertical className="h-4 w-4" />
             </Button>
           </DropdownMenuTrigger>
@@ -139,18 +143,18 @@ function FolderCard({ folder }: { folder: any }) {
           </DropdownMenuContent>
         </DropdownMenu>
       </div>
-      <div className="text-xs text-gray-500">
+      <div className="text-xs text-gray-500 dark:text-gray-400">
         <div>{folder.items} items</div>
         <div>Modified {folder.modified}</div>
       </div>
     </div>
-  )
+  );
 }
 
 function FileCard({ file }: { file: any }) {
   return (
-    <div className="group relative rounded-lg border bg-white transition-all hover:shadow-md">
-      <div className="aspect-video overflow-hidden rounded-t-lg bg-gray-100">
+    <div className="group relative rounded-lg border bg-white transition-all hover:shadow-md dark:border-gray-700 dark:bg-gray-900 dark:hover:bg-gray-800 dark:hover:shadow-none">
+      <div className="aspect-video overflow-hidden rounded-t-lg bg-gray-100 dark:bg-gray-800">
         {file.type === "image" ? (
           <Image
             src={file.thumbnail || "/placeholder.svg?height=200&width=300"}
@@ -181,7 +185,11 @@ function FileCard({ file }: { file: any }) {
           </div>
           <DropdownMenu>
             <DropdownMenuTrigger asChild>
-              <Button variant="ghost" size="icon" className="h-8 w-8 opacity-0 group-hover:opacity-100">
+              <Button
+                variant="ghost"
+                size="icon"
+                className="h-8 w-8 opacity-0 group-hover:opacity-100"
+              >
                 <MoreVertical className="h-4 w-4" />
               </Button>
             </DropdownMenuTrigger>
@@ -202,18 +210,18 @@ function FileCard({ file }: { file: any }) {
             </DropdownMenuContent>
           </DropdownMenu>
         </div>
-        <div className="text-xs text-gray-500">
+        <div className="text-xs text-gray-500 dark:text-gray-400">
           <div>Modified {file.modified}</div>
           <div>{file.size}</div>
         </div>
       </div>
     </div>
-  )
+  );
 }
 
 function FolderRow({ folder }: { folder: any }) {
   return (
-    <div className="grid grid-cols-12 items-center border-b px-4 py-2 text-sm hover:bg-gray-50">
+    <div className="grid grid-cols-12 items-center border-b px-4 py-2 text-sm hover:bg-gray-50 dark:border-gray-700 dark:hover:bg-gray-800">
       <div className="col-span-6 flex items-center gap-2">
         <Folder className="h-5 w-5 text-gray-400" />
         <span className="font-medium">{folder.name}</span>
@@ -246,12 +254,12 @@ function FolderRow({ folder }: { folder: any }) {
         </DropdownMenu>
       </div>
     </div>
-  )
+  );
 }
 
 function FileRow({ file }: { file: any }) {
   return (
-    <div className="grid grid-cols-12 items-center border-b px-4 py-2 text-sm hover:bg-gray-50">
+    <div className="grid grid-cols-12 items-center border-b px-4 py-2 text-sm hover:bg-gray-50 dark:border-gray-700 dark:hover:bg-gray-800">
       <div className="col-span-6 flex items-center gap-2">
         {file.type === "image" ? (
           <ImageIcon className="h-5 w-5 text-gray-400" />
@@ -288,5 +296,5 @@ function FileRow({ file }: { file: any }) {
         </DropdownMenu>
       </div>
     </div>
-  )
+  );
 }
