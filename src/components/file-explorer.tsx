@@ -49,11 +49,11 @@ export function FileExplorer() {
             <Plus className="h-4 w-4" />
             <span>New Folder</span>
           </Button>
-          <div className="flex rounded-md border">
+          <div className="flex rounded-md border dark:border-gray-700">
             <Button
               variant="ghost"
               size="icon"
-              className={`h-8 w-8 rounded-none rounded-l-md ${viewMode === "list" ? "bg-gray-100" : ""}`}
+              className={`h-8 w-8 rounded-none rounded-l-md ${viewMode === "list" ? "bg-gray-100 dark:bg-gray-800" : ""}`}
               onClick={() => setViewMode("list")}
             >
               <List className="h-4 w-4" />
@@ -61,7 +61,7 @@ export function FileExplorer() {
             <Button
               variant="ghost"
               size="icon"
-              className={`h-8 w-8 rounded-none rounded-r-md ${viewMode === "grid" ? "bg-gray-100" : ""}`}
+              className={`h-8 w-8 rounded-none rounded-r-md ${viewMode === "grid" ? "bg-gray-100 dark:bg-gray-800" : ""}`}
               onClick={() => setViewMode("grid")}
             >
               <Grid className="h-4 w-4" />
@@ -71,7 +71,7 @@ export function FileExplorer() {
       </div>
 
       <div className="mb-6">
-        <div className="flex items-center gap-1 text-sm text-gray-500">
+        <div className="flex items-center gap-1 text-sm text-gray-500 dark:text-gray-400">
           <span>My Drive</span>
           <ChevronRight className="h-4 w-4" />
           <span>Documents</span>
@@ -88,8 +88,8 @@ export function FileExplorer() {
           ))}
         </div>
       ) : (
-        <div className="rounded-lg border bg-white">
-          <div className="grid grid-cols-12 border-b px-4 py-2 text-sm font-medium text-gray-500">
+        <div className="rounded-lg border bg-white dark:border-gray-700 dark:bg-gray-900">
+          <div className="grid grid-cols-12 border-b px-4 py-2 text-sm font-medium text-gray-500 dark:border-gray-700 dark:text-gray-400">
             <div className="col-span-6">Name</div>
             <div className="col-span-2">Owner</div>
             <div className="col-span-2">Last modified</div>
