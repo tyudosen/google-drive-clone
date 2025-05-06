@@ -17,7 +17,7 @@ const client =
     host: env.SINGLE_STORE_HOST,
     user: env.SINGLE_STORE_USER,
     database: env.SINGLE_STORE_DATABASE_NAME,
-    port: env.SINGLE_STORE_PORT as never as number,
+    port: parseInt(env.SINGLE_STORE_PORT),
     password: env.SINGLE_STORE_PASSWORD,
     ssl: {},
     maxIdle: 0,

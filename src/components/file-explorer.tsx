@@ -27,8 +27,8 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
-import { type FileSystemItem } from "@/lib/mock-data";
 import { EmptyState } from "./empty-state";
+import type { FileSystemItem } from "@/lib/types";
 
 interface FileExplorerProps {
   fileSystem: {

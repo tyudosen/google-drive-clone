@@ -29,8 +29,8 @@ export const fileSystem = createTable(
     filePath: text("filePath"), // Internal storage path
     size: int("size"), // Size in bytes
     mimeType: text("mimeType"), // MIME type (e.g., "image/jpeg", "application/pdf")
-    createdAt: timestamp({ mode: "string" }).defaultNow().notNull(),
-    updatedAt: timestamp({ mode: "string" }).defaultNow().onUpdateNow(),
+    createdAt: timestamp({ mode: "date" }).defaultNow().notNull(),
+    updatedAt: timestamp({ mode: "date" }).defaultNow().onUpdateNow(),
   },
   (tempTable) => [
     // Existing index on parent

@@ -9,7 +9,7 @@ export default {
     host: env.SINGLE_STORE_HOST,
     user: env.SINGLE_STORE_USER,
     password: env.SINGLE_STORE_PASSWORD,
-    port: env.SINGLE_STORE_PORT as never as number,
+    port: parseInt(env.SINGLE_STORE_PORT),
     database: env.SINGLE_STORE_DATABASE_NAME,
     ssl: {},
   },
