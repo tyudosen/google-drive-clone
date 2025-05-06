@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import { format } from "date-fns";
 import {
   ChevronRight,
   Download,
@@ -26,10 +27,32 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
-import { mockFiles, mockFolders } from "@/lib/mock-data";
+import { EmptyState } from "./empty-state";
+import type { FileSystemItem } from "@/lib/types";
 
-export function FileExplorer() {
+interface FileExplorerProps {
+  fileSystem: {
+    files: FileSystemItem[];
+    folders: FileSystemItem[];
+  };
+}
+export function FileExplorer({
+  fileSystem: { files, folders },
+}: FileExplorerProps) {
   const [viewMode, setViewMode] = useState<"grid" | "list">("grid");
+
+  const isEmpty = files.length === 0 && folders.length === 0;
+
+  // Mock handlers for empty state actions
+  const handleUpload = () => {
+    // In a real app, this would open a file picker
+    console.log("Upload clicked");
+  };
+
+  const handleCreateFolder = () => {
+    // In a real app, this would create a new folder
+    console.log("Create folder clicked");
+  };
 
   return (
     <div className="p-6">
@@ -109,12 +132,17 @@ export function FileExplorer() {
         </div>
       </div>
 
-      {viewMode === "grid" ? (
+      {isEmpty ? (
+        <EmptyState
+          onUpload={handleUpload}
+          onCreateFolder={handleCreateFolder}
+        />
+      ) : viewMode === "grid" ? (
         <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5">
-          {mockFolders.map((folder) => (
+          {folders.map((folder) => (
             <FolderCard key={folder.id} folder={folder} />
           ))}
-          {mockFiles.map((file) => (
+          {files.map((file) => (
             <FileCard key={file.id} file={file} />
           ))}
         </div>
@@ -127,10 +155,10 @@ export function FileExplorer() {
             <div className="col-span-1">Size</div>
             <div className="col-span-1"></div>
           </div>
-          {mockFolders.map((folder) => (
+          {folders.map((folder) => (
             <FolderRow key={folder.id} folder={folder} />
           ))}
-          {mockFiles.map((file) => (
+          {files.map((file) => (
             <FileRow key={file.id} file={file} />
           ))}
         </div>
@@ -175,8 +203,8 @@ function FolderCard({ folder }: { folder: any }) {
         </DropdownMenu>
       </div>
       <div className="text-xs text-gray-500 dark:text-gray-400">
-        <div>{folder.items} items</div>
-        <div>Modified {folder.modified}</div>
+        <div>{10} items</div>
+        <div>Modified {format(folder.updatedAt, "MMM d, yyyy")}</div>
       </div>
     </div>
   );
@@ -242,7 +270,7 @@ function FileCard({ file }: { file: any }) {
           </DropdownMenu>
         </div>
         <div className="text-xs text-gray-500 dark:text-gray-400">
-          <div>Modified {file.modified}</div>
+          <div>Modified {format(file.updatedAt, "MMM d, yyyy")}</div>
           <div>{file.size}</div>
         </div>
       </div>
