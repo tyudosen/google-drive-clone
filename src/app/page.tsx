@@ -2,6 +2,7 @@ import { FileExplorer } from "@/components/file-explorer";
 import { Header } from "@/components/header";
 import { Sidebar } from "@/components/sidebar";
 import { ThemeProvider } from "@/providers/theme-provider";
+import { eq } from "drizzle-orm";
 import { db } from "~/server/db";
 import { fileSystem as fileSystemTable } from "~/server/db/schema";
 
@@ -11,14 +12,11 @@ const FILE_SYSTEM_ITEM_TYPE = {
 } as const;
 
 export default async function DrivePage() {
-  const fileSystem = await db.select().from(fileSystemTable);
+  const folders = await db.select().from(fileSystemTable).where(eq(fileSystemTable.type, FILE_SYSTEM_ITEM_TYPE.FOLDER))
+  const files = await db.select().from(fileSystemTable).where(eq(fileSystemTable.type, FILE_SYSTEM_ITEM_TYPE.FILE))
 
-  const folders = fileSystem.filter(
-    (item) => item?.type === FILE_SYSTEM_ITEM_TYPE.FOLDER,
-  );
-  const files = fileSystem.filter(
-    (item) => item?.type === FILE_SYSTEM_ITEM_TYPE.FILE,
-  );
+
+
 
   return (
     <ThemeProvider defaultTheme="system">
